@@ -1,0 +1,61 @@
+/* ol é flex-container */
+.barra-progresso {
+  counter-reset: progress;
+  padding-left: 0;
+  display: flex;
+}
+
+/* li é flex-item e flex-container */
+.barra-progresso li {
+  display: flex;
+  align-items: center;
+  list-style-type: nome;
+  counter-increment: progress;
+}
+
+/* todos flexíveis exceto primeiro */
+.barra-progresso li + li {
+  flex: 1 0 auto;
+}
+
+/* ocultar etapas adicionais */
+.barra-progresso .progresso-atual ~ li {
+  opacity: 0.5;
+}
+
+/* mostrar os números do contador */
+.barra-progresso li::after {
+  content: counter(progress);
+  display: inline-block;
+  box-sizing: border-box;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  background: hotpink;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+}
+
+/* mostra barras de progresso, exceto para o primeiro */
+.barra-progresso li + li::before {
+  content: "";
+  flex: 1;
+  display: block;
+  border-bottom: 2px solid hotpink;
+}
+
+.barra-progresso .progresso-atual ~ li::before {
+  border-bottom-style: dotted;
+}
+
+/*decoração*/
+* {
+  box-sizing: border-box;
+}
+body {
+  background: #abedd8;
+  padding: 2em;
+  font-size: 1.6em;
+  font-family: helvetica, arial, sans-serif;
+}
